@@ -1,4 +1,5 @@
 # Dependencies
+<<<<<<< HEAD
 node_modules/
 package-lock.json
 yarn.lock
@@ -28,10 +29,42 @@ coverage/
 # IDE
 .vscode/
 .idea/
+=======
+node_modules
+.pnp
+.pnp.js
+
+# Testing
+coverage
+
+# Production
+dist
+build
+
+# Misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Editor
+.vscode
+.idea
+>>>>>>> 5ef0b8057468e179c6f8f3da16126d1590250717
 *.swp
 *.swo
 *~
 
+<<<<<<< HEAD
 # OS
 .DS_Store
 Thumbs.db
@@ -46,3 +79,11 @@ temp/
 
 # Testing
 .env.test
+=======
+# Cache
+.eslintcache
+.cache
+
+# TypeScript
+*.tsbuildinfo
+>>>>>>> 5ef0b8057468e179c6f8f3da16126d1590250717
