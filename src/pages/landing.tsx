@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as Icons from 'lucide-react';
-import Button from '../components/button';
 
 const Landing: React.FC = () => {
-  const [scrollY, setScrollY] = useState(0);
   const [activeSlide, setActiveSlide] = useState(0);
-  const [timeLeft, setTimeLeft] = useState({
+  const [timeLeft] = useState({
     days: '02',
     hours: '14',
     minutes: '35',
@@ -43,11 +41,7 @@ const Landing: React.FC = () => {
     { name: 'Sports', icon: Icons.Activity, color: 'from-orange-400 to-red-500' },
   ];
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -68,7 +62,7 @@ const Landing: React.FC = () => {
       {/* Main Content */}
       <div className="relative z-10">
         {/* Limited Time Offer Banner */}
-        <div className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 text-white px-4 py-3 text-center font-bold animate-pulse">
+        <div className="fixed top-0 left-0 right-0 z-50 bg-linear-to-r from-red-600 via-yellow-500 to-red-600 text-white px-4 py-3 text-center font-bold animate-pulse">
           <div className="flex items-center justify-center gap-2">
             <Icons.AlertCircle size={20} />
             <span>⚡ LIMITED TIME OFFER - MASSIVE DISCOUNTS! ⚡</span>
@@ -89,7 +83,7 @@ const Landing: React.FC = () => {
                 </div>
 
                 <h1 className="text-6xl md:text-7xl font-black leading-tight">
-                  <span className="bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 bg-clip-text text-transparent animate-pulse">
+                  <span className="bg-linear-to-r from-red-500 via-yellow-500 to-red-500 bg-clip-text text-transparent animate-pulse">
                     MEGA SALE
                   </span>
                   <br />
@@ -101,7 +95,7 @@ const Landing: React.FC = () => {
                 </p>
 
                 {/* Countdown Timer */}
-                <div className="bg-gradient-to-r from-red-500 to-yellow-500 p-8 rounded-2xl">
+                <div className="bg-linear-to-r from-red-500 to-yellow-500 p-8 rounded-2xl">
                   <p className="text-gray-900 font-bold text-lg mb-4">OFFER ENDS IN:</p>
                   <div className="grid grid-cols-4 gap-4 text-center">
                     <div className="bg-gray-900/30 rounded-lg p-4 backdrop-blur">
@@ -166,7 +160,7 @@ const Landing: React.FC = () => {
                           isActive ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
                         }`}
                       >
-                        <div className={`bg-gradient-to-br ${offer.color} rounded-3xl h-full flex flex-col items-center justify-center p-8 shadow-2xl`}>
+                        <div className={`bg-linear-to-br ${offer.color} rounded-3xl h-full flex flex-col items-center justify-center p-8 shadow-2xl`}>
                           <IconComponent size={120} className="text-white/80 mb-6" />
                           <div className="text-6xl font-black text-white text-center">{offer.title}</div>
                           <div className="text-2xl text-white/90 font-bold mt-4 text-center">{offer.subtitle}</div>
@@ -211,7 +205,7 @@ const Landing: React.FC = () => {
                 return (
                   <Link key={index} to={`/products?category=${category.name.toLowerCase()}`}>
                     <div className="group relative overflow-hidden rounded-2xl h-48 cursor-pointer">
-                      <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-80 group-hover:opacity-100 transition-all duration-300`} />
+                      <div className={`absolute inset-0 bg-linear-to-br ${category.color} opacity-80 group-hover:opacity-100 transition-all duration-300`} />
                       <div className="relative h-full flex flex-col items-center justify-center text-white transform group-hover:scale-110 transition-transform duration-300">
                         <IconComponent size={64} className="mb-4 group-hover:animate-bounce" />
                         <h3 className="text-2xl font-black text-center">{category.name}</h3>
@@ -226,7 +220,7 @@ const Landing: React.FC = () => {
         </section>
 
         {/* Features Section */}
-        <section className="py-24 px-4 bg-gradient-to-r from-gray-900 to-black relative">
+        <section className="py-24 px-4 bg-linear-to-r from-gray-900 to-black relative">
           <div className="container mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {[
@@ -248,7 +242,7 @@ const Landing: React.FC = () => {
         {/* Bottom CTA Banner */}
         <section className="py-20 px-4 relative">
           <div className="container mx-auto">
-            <div className="bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 rounded-3xl p-12 text-center relative overflow-hidden">
+            <div className="bg-linear-to-r from-red-600 via-yellow-500 to-red-600 rounded-3xl p-12 text-center relative overflow-hidden">
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute inset-0 bg-pattern" />
               </div>

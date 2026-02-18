@@ -51,7 +51,7 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-[calc(100vh-200px)]">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-background to-background-alt py-16 lg:py-24 relative overflow-hidden">
+      <section className="bg-linear-to-br from-background to-background-alt py-16 lg:py-24 relative overflow-hidden">
         <div className="container">
           <div className="grid md:grid-cols-2 gap-16 items-center relative z-10">
             <div className="animate-slide-in">
@@ -78,7 +78,7 @@ const Home: React.FC = () => {
             </div>
             
             <div className="relative h-[500px] animate-fade-in">
-              <div className="w-full h-full bg-gradient-to-br from-primary to-accent rounded-lg relative">
+              <div className="w-full h-full bg-linear-to-br from-primary to-accent rounded-lg relative">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/10 text-[15rem] font-display select-none">
                   ◈
                 </div>
@@ -98,7 +98,7 @@ const Home: React.FC = () => {
                 className="text-center p-10 bg-background-alt rounded-lg hover:-translate-y-2 hover:shadow-md hover:bg-surface transition-all duration-250 animate-scale-in"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-gradient-to-br from-primary to-primary-light text-white rounded-lg">
+                <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-linear-to-br from-primary to-primary-light text-white rounded-lg">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl mb-2 font-display">{feature.title}</h3>
@@ -138,7 +138,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-primary-dark to-primary text-white text-center py-32 relative overflow-hidden">
+      <section className="bg-linear-to-br from-primary-dark to-primary text-white text-center py-32 relative overflow-hidden">
         <div className="absolute -top-1/2 -right-[10%] w-[500px] h-[500px] bg-accent rounded-full opacity-10" />
         
         <div className="container relative z-10">

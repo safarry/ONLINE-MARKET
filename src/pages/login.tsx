@@ -81,7 +81,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-10 bg-gradient-to-br from-background to-background-alt">
+    <div className="min-h-screen flex items-center justify-center p-10 bg-linear-to-br from-background to-background-alt">
       <div className="w-full max-w-6xl grid md:grid-cols-2 bg-surface rounded-lg overflow-hidden shadow-lg">
         {/* Form Side */}
         <div className="p-16 animate-slide-in">
@@ -153,7 +153,7 @@ const Login: React.FC = () => {
         </div>
 
         {/* Decoration Side */}
-        <div className="hidden md:flex bg-gradient-to-br from-primary-dark to-primary relative items-center justify-center p-16 overflow-hidden">
+        <div className="hidden md:flex bg-linear-to-br from-primary-dark to-primary relative items-center justify-center p-16 overflow-hidden">
           <div className="absolute w-[300px] h-[300px] bg-white/10 rounded-full -top-24 -right-24 animate-[float_6s_ease-in-out_infinite]" />
           <div className="absolute w-[200px] h-[200px] bg-white/10 rounded-full -bottom-12 -left-12 animate-[float_8s_ease-in-out_infinite_reverse]" />
           

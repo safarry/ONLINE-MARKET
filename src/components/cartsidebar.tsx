@@ -65,7 +65,7 @@ const CartSidebar: React.FC = () => {
                     <img
                       src={product.images?.[0] || '/placeholder.jpg'}
                       alt={product.name}
-                      className="w-20 h-20 object-cover rounded flex-shrink-0"
+                      className="w-20 h-20 object-cover rounded shrink-0"
                     />
                     
                     <div className="flex-1 flex flex-col gap-1">
