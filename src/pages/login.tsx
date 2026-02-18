@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Mail, Lock, ArrowRight } from 'lucide-react';
+import * as Icons from 'lucide-react';
 import { authAPI } from '../services/api';
 import { useAuthStore } from '../stores';
 import Input from '../components/input';
@@ -98,7 +98,7 @@ const Login: React.FC = () => {
               value={formData.email}
               onChange={handleChange}
               error={errors.email}
-              icon={<Mail size={20} />}
+              icon={<Icons.Mail size={20} />}
               placeholder="you@example.com"
               autoComplete="email"
             />
@@ -110,7 +110,7 @@ const Login: React.FC = () => {
               value={formData.password}
               onChange={handleChange}
               error={errors.password}
-              icon={<Lock size={20} />}
+              icon={<Icons.Lock size={20} />}
               placeholder="Enter your password"
               autoComplete="current-password"
             />
@@ -136,7 +136,7 @@ const Login: React.FC = () => {
               fullWidth
               size="large"
               loading={loading}
-              icon={<ArrowRight size={20} />}
+              icon={<Icons.ArrowRight size={20} />}
             >
               Sign In
             </Button>

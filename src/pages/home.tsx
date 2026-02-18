@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Package, Shield, Truck, CreditCard } from 'lucide-react';
+import * as Icons from 'lucide-react';
 import { productsAPI } from '../services/api';
 import ProductCard from '../components/productcart';
 import Button from '../components/button';
@@ -27,22 +27,22 @@ const Home: React.FC = () => {
 
   const features = [
     {
-      icon: <Truck size={32} />,
+      icon: <Icons.Truck size={32} />,
       title: 'Free Shipping',
       description: 'On orders over $50'
     },
     {
-      icon: <Shield size={32} />,
+      icon: <Icons.Shield size={32} />,
       title: 'Secure Payment',
       description: '100% secure transactions'
     },
     {
-      icon: <Package size={32} />,
+      icon: <Icons.Package size={32} />,
       title: 'Easy Returns',
       description: '30-day return policy'
     },
     {
-      icon: <CreditCard size={32} />,
+      icon: <Icons.CreditCard size={32} />,
       title: 'Flexible Payment',
       description: 'Multiple payment options'
     }
@@ -65,7 +65,7 @@ const Home: React.FC = () => {
               </p>
               <div className="flex flex-wrap gap-6">
                 <Link to="/products">
-                  <Button size="large" icon={<ArrowRight size={20} />}>
+                  <Button size="large" icon={<Icons.ArrowRight size={20} />}>
                     Shop Now
                   </Button>
                 </Link>
@@ -117,7 +117,7 @@ const Home: React.FC = () => {
               Featured Products
             </h2>
             <Link to="/products">
-              <Button variant="ghost" icon={<ArrowRight size={18} />}>
+              <Button variant="ghost" icon={<Icons.ArrowRight size={18} />}>
                 View All
               </Button>
             </Link>

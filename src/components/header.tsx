@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ShoppingCart, User, Menu, X, LogOut } from 'lucide-react';
+import * as Icons from 'lucide-react';
 import { useAuthStore, useCartStore, useUIStore } from '../stores';
 import Button from './button';
 
@@ -61,7 +61,7 @@ const Header: React.FC = () => {
               className="md:hidden p-2 text-text"
               onClick={toggleSidebar}
             >
-              {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
+              {isSidebarOpen ? <Icons.X size={24} /> : <Icons.Menu size={24} />}
             </button>
 
             {/* Logo */}
@@ -86,7 +86,7 @@ const Header: React.FC = () => {
               {isAuthenticated ? (
                 <>
                   <Link to="/dashboard" className="hidden lg:flex items-center gap-2 p-2 text-text hover:text-primary transition-colors">
-                    <User size={22} />
+                    <Icons.User size={22} />
                     <span className="font-medium">{user?.firstName || 'User'}</span>
                   </Link>
                   <button
@@ -94,7 +94,7 @@ const Header: React.FC = () => {
                     onClick={handleLogout}
                     className="hidden lg:flex p-2 text-text hover:text-primary transition-colors"
                   >
-                    <LogOut size={22} />
+                    <Icons.LogOut size={22} />
                   </button>
                 </>
               ) : (
@@ -110,7 +110,7 @@ const Header: React.FC = () => {
                 className="relative p-2 text-text hover:text-primary transition-colors"
                 onClick={toggleCart}
               >
-                <ShoppingCart size={22} />
+                <Icons.ShoppingCart size={22} />
                 {cartItemCount > 0 && (
                   <span className="absolute -top-1 -right-1 bg-accent text-white text-xs font-semibold min-w-[20px] h-5 flex items-center justify-center rounded-full px-1">
                     {cartItemCount}
@@ -155,44 +155,46 @@ const Header: React.FC = () => {
             <Link
               to="/products"
               onClick={handleNavLinkClick}
-              className="font-medium text-text hover:text-primary transition-colors relative pb-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full"
+              className="md:text-sm font-medium text-text hover:text-primary transition-colors"
             >
-              All Products
+              Products
             </Link>
+            <Link
+              to="/gallery"
+              onClick={handleNavLinkClick}
+              className="md:text-sm font-medium text-text hover:text-primary transition-colors"
+            >
+              Gallery
+            </Link>
+            {isAuthenticated && (
+              <Link
+                to="/create-product"
+                onClick={handleNavLinkClick}
+                className="md:text-sm font-medium text-text hover:text-primary transition-colors"
+              >
+                Sell
+              </Link>
+            )}
             <Link
               to="/products?category=electronics"
               onClick={handleNavLinkClick}
-              className="font-medium text-text hover:text-primary transition-colors relative pb-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full"
+              className="md:text-sm font-medium text-text hover:text-primary transition-colors"
             >
               Electronics
             </Link>
             <Link
               to="/products?category=fashion"
               onClick={handleNavLinkClick}
-              className="font-medium text-text hover:text-primary transition-colors relative pb-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full"
+              className="md:text-sm font-medium text-text hover:text-primary transition-colors"
             >
               Fashion
             </Link>
             <Link
-              to="/products?category=home"
+              to="/products?category=books"
               onClick={handleNavLinkClick}
-              className="font-medium text-text hover:text-primary transition-colors relative pb-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full"
+              className="md:text-sm font-medium text-text hover:text-primary transition-colors"
             >
-              Home & Living
-            </Link>
-            <Link
-              to="/products?category=beauty"
-              onClick={handleNavLinkClick}
-              className="font-medium text-text hover:text-primary transition-colors relative pb-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all hover:after:w-full"
-            >
-              Beauty
-            </Link>
-            <Link
-              to="/products?featured=true"
-              onClick={handleNavLinkClick}
-              className="font-medium text-accent hover:text-accent-dark transition-colors relative pb-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-accent after:transition-all hover:after:w-full"
-            >
-              Featured
+              Books
             </Link>
           </nav>
         </div>

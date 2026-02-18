@@ -8,10 +8,13 @@ import Header from './components/header';
 import CartSidebar from './components/cartsidebar';
 
 // Pages
+import Landing from './pages/landing';
 import Home from './pages/home';
 import Login from './pages/login';
 import Register from './pages/register';
 import Products from './pages/product';
+import CreateProduct from './pages/create-product';
+import ImageGallery from './pages/gallery';
 
 // Protected Route Component
 interface ProtectedRouteProps {
@@ -32,16 +35,18 @@ const App: React.FC = () => {
         
         <main className="flex-1">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Landing />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/gallery" element={<ImageGallery />} />
             <Route
-              path="/products/:id"
+              path="/create-product"
               element={
-                <div className="container py-16 text-center">
-                  <h1 className="text-3xl font-display">Product Detail (Coming Soon)</h1>
-                </div>
+                <ProtectedRoute>
+                  <CreateProduct />
+                </ProtectedRoute>
               }
             />
             

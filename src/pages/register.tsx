@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Mail, Lock, User as UserIcon, ArrowRight } from 'lucide-react';
+import * as Icons from 'lucide-react';
 import { authAPI } from '../services/api';
 import { useAuthStore } from '../stores';
 import Input from '../components/input';
@@ -29,7 +29,6 @@ const Register: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
-    name: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -78,35 +77,43 @@ const Register: React.FC = () => {
     return newErrors;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    const newErrors = validate();
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    setLoading(true);
-    
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { confirmPassword, firstName, lastName, ...registerData } = formData;
-      const response = await authAPI.register(registerData as RegisterData);
-      const { token, user } = response.data.data;
-      
-      localStorage.setItem('token', token);
-      setAuth(user, token);
-      
-      navigate('/');
-    } catch (error: unknown) {
-      const axiosError = error as { response?: { data?: { message?: string } } };
-      const message = axiosError.response?.data?.message || 'Registration failed. Please try again.';
-      setErrors({ submit: message });
-    } finally {
-      setLoading(false);
-    }
-  };
+  const newErrors = validate();
+  if (Object.keys(newErrors).length > 0) {
+    setErrors(newErrors);
+    return;
+  }
+
+  setLoading(true);
+  
+  try {
+    // Send firstName and lastName separately
+    const registerPayload = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      password: formData.password,
+      role: formData.role === 'user' ? 'buyer' : formData.role, // Map 'user' to 'buyer'
+    };
+    console.log('Sending register:', registerPayload); // DEBUG
+
+    const response = await authAPI.register(registerPayload);
+    const { token, user } = response.data.data;
+
+    localStorage.setItem('token', token);
+    setAuth(user, token);
+
+    navigate('/');
+  } catch (error: unknown) {
+    const axiosError = error as { response?: { data?: { message?: string } } };
+    const message = axiosError.response?.data?.message || 'Registration failed. Please try again.';
+    setErrors({ submit: message });
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center p-10 bg-gradient-to-br from-background to-background-alt">
@@ -127,7 +134,7 @@ const Register: React.FC = () => {
                 value={formData.firstName}
                 onChange={handleChange}
                 error={errors.firstName}
-                icon={<UserIcon size={20} />}
+                icon={<Icons.User size={20} />}
                 placeholder="John"
                 autoComplete="given-name"
                 fullWidth={false}
@@ -140,7 +147,7 @@ const Register: React.FC = () => {
                 value={formData.lastName}
                 onChange={handleChange}
                 error={errors.lastName}
-                icon={<UserIcon size={20} />}
+                icon={<Icons.User size={20} />}
                 placeholder="Doe"
                 autoComplete="family-name"
                 fullWidth={false}
@@ -154,7 +161,7 @@ const Register: React.FC = () => {
               value={formData.email}
               onChange={handleChange}
               error={errors.email}
-              icon={<Mail size={20} />}
+              icon={<Icons.Mail size={20} />}
               placeholder="you@example.com"
               autoComplete="email"
             />
@@ -166,7 +173,7 @@ const Register: React.FC = () => {
               value={formData.password}
               onChange={handleChange}
               error={errors.password}
-              icon={<Lock size={20} />}
+              icon={<Icons.Lock size={20} />}
               placeholder="Min. 6 characters"
               autoComplete="new-password"
             />
@@ -178,7 +185,7 @@ const Register: React.FC = () => {
               value={formData.confirmPassword}
               onChange={handleChange}
               error={errors.confirmPassword}
-              icon={<Lock size={20} />}
+              icon={<Icons.Lock size={20} />}
               placeholder="Re-enter password"
               autoComplete="new-password"
             />
@@ -222,7 +229,7 @@ const Register: React.FC = () => {
               fullWidth
               size="large"
               loading={loading}
-              icon={<ArrowRight size={20} />}
+              icon={<Icons.ArrowRight size={20} />}
             >
               Create Account
             </Button>

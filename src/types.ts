@@ -42,7 +42,7 @@ export interface LoginCredentials {
 }
 
 export interface RegisterData {
-  name: string;
+  name?: string;
   email: string;
   password: string;
   firstName?: string;

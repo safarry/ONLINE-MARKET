@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { X, Trash2, Plus, Minus } from 'lucide-react';
+import * as Icons from 'lucide-react';
 import { useCartStore,useUIStore  } from '../stores';
 import Button from './button';
 import type { CartItem } from '../types';
@@ -34,11 +34,11 @@ const CartSidebar: React.FC = () => {
         {/* Header */}
         <div className="flex justify-between items-center p-6 border-b border-border">
           <h2 className="text-2xl font-bold">Shopping Cart</h2>
-          <button
+            <button
             onClick={closeCart}
             className="p-2 text-text hover:text-primary transition-colors"
           >
-            <X size={24} />
+            <Icons.X size={24} />
           </button>
         </div>
 
@@ -81,7 +81,7 @@ const CartSidebar: React.FC = () => {
                           onClick={() => updateQuantity(product._id, quantity - 1)}
                           className="w-7 h-7 flex items-center justify-center bg-surface border border-border rounded hover:bg-primary hover:border-primary hover:text-white transition-all"
                         >
-                          <Minus size={16} />
+                          <Icons.Minus size={16} />
                         </button>
                         <span className="min-w-[30px] text-center font-semibold">
                           {quantity}
@@ -90,7 +90,7 @@ const CartSidebar: React.FC = () => {
                           onClick={() => updateQuantity(product._id, quantity + 1)}
                           className="w-7 h-7 flex items-center justify-center bg-surface border border-border rounded hover:bg-primary hover:border-primary hover:text-white transition-all"
                         >
-                          <Plus size={16} />
+                          <Icons.Plus size={16} />
                         </button>
                       </div>
                     </div>
@@ -99,7 +99,7 @@ const CartSidebar: React.FC = () => {
                       onClick={() => removeItem(product._id)}
                       className="absolute top-4 right-4 p-1 text-text-light hover:text-error transition-colors"
                     >
-                      <Trash2 size={18} />
+                      <Icons.Trash2 size={18} />
                     </button>
                     </div>
                   );

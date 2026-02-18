@@ -16,6 +16,8 @@ import type {
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1';
 
+console.log('API_BASE_URL:', API_BASE_URL); // DEBUG
+
 // Create axios instance
 const api: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,

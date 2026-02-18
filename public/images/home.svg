@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="80" viewBox="0 0 120 80">
+  <defs>
+    <linearGradient id="sofaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5b21b6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="120" height="80" rx="8" fill="#f3e8ff" />
+  <g transform="translate(16,14)">
+    <!-- Sofa back -->
+    <rect x="0" y="0" width="48" height="24" rx="3" fill="url(#sofaGrad)" stroke="#6d28d9" stroke-width="1"/>
+    <!-- Sofa seat -->
+    <path d="M0 24 Q0 32, 4 32 L44 32 Q48 32, 48 24" fill="#8b5cf6" stroke="#6d28d9" stroke-width="1"/>
+    <!-- Legs -->
+    <rect x="2" y="32" width="2" height="8" fill="#78350f"/>
+    <rect x="10" y="32" width="2" height="8" fill="#78350f"/>
+    <rect x="38" y="32" width="2" height="8" fill="#78350f"/>
+    <rect x="46" y="32" width="2" height="8" fill="#78350f"/>
+    <!-- Cushions -->
+    <circle cx="8" cy="20" r="2.5" fill="#a78bfa" opacity="0.6"/>
+    <circle cx="24" cy="20" r="2.5" fill="#a78bfa" opacity="0.6"/>
+    <circle cx="40" cy="20" r="2.5" fill="#a78bfa" opacity="0.6"/>
+  </g>
+</svg>

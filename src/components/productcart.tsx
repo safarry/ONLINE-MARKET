@@ -1,9 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Star } from 'lucide-react';
+import * as Icons from 'lucide-react';
 import { useCartStore } from '../stores';
 import Button from './button';
 import type { Product } from '../types';
+
+// Dynamic import of product images
+const imageModules = import.meta.glob<{ default: string }>(
+  '../assets/ass*.jpg',
+  { eager: true }
+) as Record<string, { default: string }>;
+
+const productImages = Object.values(imageModules).map(module => module.default);
 
 interface ProductCardProps {
   product: Product;
@@ -21,6 +29,25 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const rating = product.averageRating || 4.5;
   const reviewCount = product.reviewCount || 0;
 
+  // Get random JPG image based on product ID
+  const getRandomProductImage = (productId: string): string => {
+    const hash = productId.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const imageIndex = hash % productImages.length;
+    return productImages[imageIndex];
+  };
+
+  const resolveImage = (img?: string, productId?: string) => {
+    if (img) {
+      if (img.startsWith('http') || img.startsWith('/')) return img;
+      // assume filename stored on backend uploads
+      return `${window.location.origin}/uploads/${img}`;
+    }
+    // Use random JPG image from assets
+    return productId ? getRandomProductImage(productId) : productImages[0];
+  };
+
+  const imageSrc = resolveImage(product.images?.[0], product._id);
+
   return (
     <Link
       to={`/products/${product._id}`}
@@ -29,7 +56,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       {/* Image */}
       <div className="relative w-full pt-[100%] overflow-hidden bg-background-alt">
         <img
-          src={product.images?.[0] || '/placeholder.jpg'}
+          src={imageSrc}
           alt={product.name}
           className="absolute top-0 left-0 w-full h-full object-cover hover:scale-105 transition-transform duration-400"
         />
@@ -73,7 +100,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="flex items-center gap-2 mt-auto pt-2">
           <div className="flex gap-0.5 text-accent">
             {[...Array(5)].map((_, i) => (
-              <Star
+              <Icons.Star
                 key={i}
                 size={14}
                 fill={i < Math.floor(rating) ? 'currentColor' : 'none'}
@@ -97,10 +124,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </span>
           </div>
 
-          <Button
+            <Button
             variant="primary"
             size="small"
-            icon={<ShoppingCart size={16} />}
+            icon={<Icons.ShoppingCart size={16} />}
             onClick={handleAddToCart}
             disabled={product.stock === 0}
           >
